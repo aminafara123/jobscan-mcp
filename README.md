@@ -30,9 +30,9 @@ Then just ask: "check the job scan: anything new in IAM in the last week?" and w
 
 ## Design notes
 
-- **Read-only by construction.** Every tool reads files; nothing mutates the dataset. Giving a model tools means deciding what it must never be able to do, and here that decision is structural, not a prompt instruction.
-- **Sanitization at the boundary.** The underlying reports can carry the operator's personal notes; the server strips them before anything crosses the protocol. Data boundaries belong in code, not in hope.
-- **Small on purpose.** Four tools, one file, standard library plus the `mcp` SDK. An MCP server does not need to be a platform to be useful; it needs to expose the right verbs over data you actually maintain.
+- **Read-only by construction.** Every tool reads files, nothing mutates the dataset. Giving a model tools means deciding what it must never be able to do, and here that decision is structural, not a prompt instruction.
+- **Sanitization at the boundary.** The underlying reports can carry the operator's personal notes, so the server strips them before anything crosses the protocol. Data boundaries belong in code, not in hope.
+- **Small on purpose.** Four tools, one file, standard library plus the `mcp` SDK. An MCP server doesnt need to be a platform to be useful. It just needs to expose the right verbs over data you actually maintain.
 
 ## About
 
