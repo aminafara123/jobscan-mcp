@@ -28,7 +28,27 @@ Wire it into Claude Code:
 claude mcp add jobscan -- /path/to/jobscan-mcp/.venv/bin/python /path/to/jobscan-mcp/server.py
 ```
 
-Then just ask: "check the job scan: anything new in IAM in the last week?" and watch the model call `search_jobs("IAM", 7)` on its own.
+## Demo
+
+What it looks like from Claude Code:
+
+```
+> check the job scan: anything new in IAM in the last week?
+
+⏺ jobscan · search_jobs("IAM", 7)
+
+  2 match(es) for 'IAM':
+
+  [2026-09-26] - **IAM Engineer** at Falconride Logistics
+    https://example.com/falconride/iam-engineer
+  [2026-09-23] - **Identity and Access Analyst** at Northgate Retail
+    https://example.com/northgate/iam-analyst
+
+⏺ Two IAM roles surfaced this week. Falconride is the Dubai one,
+  Northgate is remote. Neither was in the scan before Tuesday.
+```
+
+The postings above are demo data. The format is exactly what the server returns.
 
 ## Design notes
 
