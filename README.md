@@ -1,6 +1,6 @@
 # jobscan-mcp
 
-[![M8ven Score](https://m8ven.ai/badge/mcp/aminafara123/jobscan-mcp)](https://m8ven.ai/mcp/aminafara123/jobscan-mcp)
+[![M8ven Score](https://m8ven.ai/badge/mcp/aminafara123-jobscan-mcp-1c9wqy?v=98cb6d9d6c8106d3d0ccca8da34b74ff)](https://m8ven.ai/mcp/aminafara123-jobscan-mcp-1c9wqy)
 
 An MCP server over my [job-scan-automation](https://github.com/aminafara123/job-scan-automation) dataset: the daily market scan behind [uae-remote-jobs-daily](https://github.com/aminafara123/uae-remote-jobs-daily), exposed as tools that any MCP-capable AI client can call.
 
