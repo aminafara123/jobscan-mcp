@@ -1,5 +1,7 @@
 # jobscan-mcp
 
+[![M8ven Score](https://m8ven.ai/badge/mcp/aminafara123/jobscan-mcp)](https://m8ven.ai/mcp/aminafara123/jobscan-mcp)
+
 An MCP server over my [job-scan-automation](https://github.com/aminafara123/job-scan-automation) dataset: the daily market scan behind [uae-remote-jobs-daily](https://github.com/aminafara123/uae-remote-jobs-daily), exposed as tools that any MCP-capable AI client can call.
 
 MCP (Model Context Protocol) is the open standard for giving AI models controlled access to tools and data. This server is the pattern in miniature and in production: my own dataset, four read-only tools, and a model on the other end that can suddenly answer questions like "any new GRC postings this week?" with real data instead of guesses.
