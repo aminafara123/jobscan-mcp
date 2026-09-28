@@ -15,6 +15,7 @@ from datetime import date, timedelta
 from pathlib import Path
 
 from mcp.server.mcpserver import MCPServer
+from mcp.types import ToolAnnotations
 
 DATA_DIR = Path.home() / "aiProjects/aminWork/job-research/scraper"
 
@@ -30,6 +31,14 @@ server = MCPServer(
     ),
 )
 
+# Every tool only reads local report files, so one shared annotation set.
+READ_ONLY = ToolAnnotations(
+    read_only_hint=True,
+    destructive_hint=False,
+    idempotent_hint=True,
+    open_world_hint=False,
+)
+
 
 def _report_files():
     return sorted(DATA_DIR.glob("jobs-report-*.md"))
@@ -41,7 +50,7 @@ def _clean(text: str) -> str:
     return "\n".join(lines).strip()
 
 
-@server.tool()
+@server.tool(annotations=READ_ONLY)
 def latest_report() -> str:
     """Full text of the most recent daily scan report (markdown)."""
     files = _report_files()
@@ -50,7 +59,7 @@ def latest_report() -> str:
     return _clean(files[-1].read_text(encoding="utf-8"))
 
 
-@server.tool()
+@server.tool(annotations=READ_ONLY)
 def search_jobs(query: str, days: int = 14) -> str:
     """Search postings in the last N days of reports. Case-insensitive
     substring match over title/company lines; returns each hit with its
@@ -77,7 +86,7 @@ def search_jobs(query: str, days: int = 14) -> str:
     return f"{len(hits)} match(es) for {query!r}:\n\n" + "\n".join(hits[:40])
 
 
-@server.tool()
+@server.tool(annotations=READ_ONLY)
 def market_stats(days: int = 30) -> str:
     """Per-day counts of relevant and new postings over the last N days,
     parsed from the reports: a quick pulse of the niche market."""
@@ -95,7 +104,7 @@ def market_stats(days: int = 30) -> str:
             + f"\n\nTotal new postings across {len(rows)} report(s): {total_new}")
 
 
-@server.tool()
+@server.tool(annotations=READ_ONLY)
 def is_seen(company: str, title: str) -> str:
     """Whether the scanner's dedupe memory already contains this
     company+title posting (i.e. it has been surfaced before)."""
