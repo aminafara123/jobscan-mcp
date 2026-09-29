@@ -4,12 +4,13 @@
 Exposes the scanner's daily reports and dedupe memory as tools any
 MCP-capable model can call (Claude Code, Claude Desktop, and friends).
 
-Run (stdio):  python server.py
+Run (stdio):  jobscan-mcp
 Wire into Claude Code:
-  claude mcp add jobscan -- /path/to/.venv/bin/python /path/to/server.py
+  claude mcp add jobscan -- jobscan-mcp
 """
 
 import json
+import os
 import re
 from datetime import date, timedelta
 from pathlib import Path
@@ -17,7 +18,7 @@ from pathlib import Path
 from mcp.server.mcpserver import MCPServer
 from mcp.types import ToolAnnotations
 
-DATA_DIR = Path.home() / "aiProjects/aminWork/job-research/scraper"
+DATA_DIR = Path(os.environ.get("JOBSCAN_DATA_DIR", Path.home() / "aiProjects/aminWork/job-research/scraper"))
 
 # Personal notes stripped before anything leaves this server.
 STRIP_PREFIXES = ("Floor reminder", "Reminder:")
@@ -118,5 +119,9 @@ def is_seen(company: str, title: str) -> str:
             "NOT SEEN: this would be new to the scanner.")
 
 
-if __name__ == "__main__":
+def main():
     server.run()
+
+
+if __name__ == "__main__":
+    main()

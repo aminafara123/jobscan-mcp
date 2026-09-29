@@ -18,14 +18,28 @@ MCP (Model Context Protocol) is the open standard for giving AI models controlle
 ## Setup
 
 ```bash
+pipx install jobscan-mcp
+```
+
+`uvx jobscan-mcp` works too if you prefer no install. Hacking on a clone instead:
+
+```bash
 python3 -m venv .venv
 .venv/bin/pip install mcp
 ```
 
+It reads `~/aiProjects/aminWork/job-research/scraper`. Point `JOBSCAN_DATA_DIR` at your own data folder if your copy lives somewhere else.
+
 Wire it into Claude Code:
 
 ```bash
-claude mcp add jobscan -- /path/to/jobscan-mcp/.venv/bin/python /path/to/jobscan-mcp/server.py
+claude mcp add jobscan -- jobscan-mcp
+```
+
+Running from a clone, point it at the venv instead:
+
+```bash
+claude mcp add jobscan -- /path/to/jobscan-mcp/.venv/bin/python /path/to/jobscan-mcp/jobscan_mcp.py
 ```
 
 ## Demo
