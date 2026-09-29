@@ -5,7 +5,7 @@ import tempfile
 from datetime import date
 from pathlib import Path
 
-import server
+import jobscan_mcp as server
 
 
 def test_tools():

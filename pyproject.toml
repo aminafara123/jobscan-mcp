@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jobscan-mcp"
+version = "1.0.1"
+description = "MCP server over a daily job market scan: four read-only tools to search postings and track market stats"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "Al Amin Bashir Afara"}]
+requires-python = ">=3.10"
+dependencies = ["mcp"]
+keywords = ["mcp", "job-search", "job-market", "job-scanner", "remote-jobs", "uae"]
+
+[project.urls]
+Homepage = "https://github.com/aminafara123/jobscan-mcp"
+Repository = "https://github.com/aminafara123/jobscan-mcp"
+
+[project.scripts]
+jobscan-mcp = "jobscan_mcp:main"
+
+[tool.setuptools]
+py-modules = ["jobscan_mcp"]
